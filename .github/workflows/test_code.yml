@@ -1,4 +1,4 @@
-name: check_static_code
+name: test_code
 
 on: [push]
 
