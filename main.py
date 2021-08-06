@@ -10,14 +10,12 @@ app = FastAPI()
 
 @app.get("/v1/get_mx_info/")
 def get_mx_info(
-    domain_name: str = Query(..., min_length=MIN_URL_LENGTH, max_length=MAX_URL_LENGTH)
+    domain_name: str = Query(
+        ...,
+        min_length=MIN_URL_LENGTH,
+        max_length=MAX_URL_LENGTH,
+        example="google.com",
+        description="Any domain name",
+    )
 ) -> dict[str, list[MxResponse]]:
-    """Get mx info.
-
-    Args:
-        domain_name (str): your domain_name, for example, google.com
-
-    Returns:
-        dict[str, list[MxResponse]]: mx_info
-    """
     return {"mx_info": get_mx_response(domain_name)}
