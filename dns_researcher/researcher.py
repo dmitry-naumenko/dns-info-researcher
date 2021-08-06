@@ -31,7 +31,7 @@ def get_mx_response(domain: str) -> list[MxResponse]:
     Returns:
         list[MxResponse]: result
     """
-    answers: list = get_answers_from_domain(domain, DnsTypes.mx)
+    answers: list = get_answers_from_domain(domain, DnsTypes.MX)
     return [
         MxResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers
@@ -47,7 +47,7 @@ def get_a_response(domain: str) -> list[AResponse]:
     Returns:
         list[AResponse]: result
     """
-    answers: list = get_answers_from_domain(domain, DnsTypes.a)
+    answers: list = get_answers_from_domain(domain, DnsTypes.A)
     return [
         AResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers

@@ -9,5 +9,5 @@ MAX_URL_LENGTH: Final[int] = 50
 class DnsTypes(Enum):
     """DnsTypes."""
 
-    mx = "MX"
-    a = "A"
+    MX = "MX"
+    A = "A"  # noqa: WPS111
