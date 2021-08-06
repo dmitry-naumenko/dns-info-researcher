@@ -6,11 +6,10 @@ uvicorn==0.14.0
 # tests
 black==21.7b0
 mypy
+pre-commit
 pytest
 pytest-mock
 requests==2.26.0
 wemake-python-styleguide
 # debug
 ipython
-
-
