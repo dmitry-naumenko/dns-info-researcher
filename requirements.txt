@@ -1,7 +1,13 @@
 # main
+dnspython==2.1.0
 fastapi==0.68.0
 uvicorn==0.14.0
-# debug
+# tests
 black==21.7b0
 mypy
+pytest
+pytest-mock
 wemake-python-styleguide
+# debug
+ipython
+

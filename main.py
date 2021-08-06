@@ -1,30 +1,20 @@
 """Main."""
-from typing import Optional
-
 from fastapi import FastAPI
+
+from dns_researcher import get_mx_response
+from dns_researcher.responses import MxResponse
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    """[summary].
-
-    Returns:
-        [type]: [description]
-    """
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, some_q: Optional[str] = None):
-    """[summary].
+@app.get("/v1/get_mx_info/{domain_name}")
+def get_mx_info(domain_name: str) -> dict[str, list[MxResponse]]:
+    """Get mx info.
 
     Args:
-        item_id (int): [description]
-        some_q (Optional[str], optional): [description]. Defaults to None.
+        domain_name (str): your domain_name, for example, google.com
 
     Returns:
-        [type]: [description]
+        dict[str, list[MxResponse]]: mx_info
     """
-    return {"item_id": item_id, "some_q": some_q}
+    return {"mx_info": get_mx_response(domain_name)}
