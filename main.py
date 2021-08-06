@@ -8,7 +8,7 @@ from dns_researcher.responses import MxResponse
 app = FastAPI()
 
 
-@app.get("/v1/get_mx_info/")
+@app.get("/v1/get_mx_info/", response_model=list[MxResponse])
 def get_mx_info(
     domain_name: str = Query(
         ...,
@@ -17,5 +17,5 @@ def get_mx_info(
         example="google.com",
         description="Any domain name",
     )
-) -> dict[str, list[MxResponse]]:
-    return {"mx_info": get_mx_response(domain_name)}
+):
+    return get_mx_response(domain_name)

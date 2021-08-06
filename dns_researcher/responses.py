@@ -1,11 +1,9 @@
 """DNS responses."""
+from pydantic import BaseModel
 
-from dataclasses import dataclass
 
-
-@dataclass
-class MxResponse:
-    """DNS MX reponse."""
+class MxResponse(BaseModel):
+    """MX response."""
 
     host: str
     priority: str
