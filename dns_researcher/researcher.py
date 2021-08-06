@@ -47,7 +47,7 @@ def get_a_response(domain: str) -> list[AResponse]:
     Returns:
         list[AResponse]: result
     """
-    answers: resolver.Answer = get_answers_from_domain(domain, DnsTypes.a)
+    answers: list = get_answers_from_domain(domain, DnsTypes.a)
     return [
         AResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers
