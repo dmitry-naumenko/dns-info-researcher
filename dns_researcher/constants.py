@@ -10,3 +10,4 @@ class DnsTypes(Enum):
     """DnsTypes."""
 
     mx = "MX"
+    a = "A"
