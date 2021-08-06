@@ -4,7 +4,7 @@ pip install -r requirements
 
 ## Start
 
-uvicorn main:app --reload --port 8001
+run docker-compose.yml
 
 ## Docs
 
