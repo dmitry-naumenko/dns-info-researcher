@@ -3,7 +3,7 @@
 from dns import resolver
 
 from dns_researcher.constants import DnsTypes
-from dns_researcher.responses import MxResponse
+from dns_researcher.responses import MxResponse, AResponse
 
 
 def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:
@@ -34,5 +34,21 @@ def get_mx_response(domain: str) -> list[MxResponse]:
     answers: list = get_answers_from_domain(domain, DnsTypes.mx)
     return [
         MxResponse(host=str(rdata.exchange), priority=rdata.preference)
+        for rdata in answers
+    ]
+
+
+def get_a_response(domain: str) -> list[AResponse]:
+    """Get a response.
+
+    Args:
+        domain (str): domain name
+
+    Returns:
+        list[AResponse]: result
+    """
+    answers: resolver.Answer = get_answers_from_domain(domain, DnsTypes.a)
+    return [
+        AResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers
     ]

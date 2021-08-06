@@ -7,3 +7,10 @@ class MxResponse(BaseModel):
 
     host: str
     priority: str
+
+
+class AResponse(BaseModel):
+    """A response."""
+
+    host: str
+    priority: str
