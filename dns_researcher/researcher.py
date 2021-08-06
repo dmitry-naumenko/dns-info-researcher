@@ -14,7 +14,7 @@ def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:
         dns_record_type (DnsTypes): [description]
 
     Returns:
-        resolver.Answer: [description]
+        list: [description]
     """
     try:
         return list(resolver.query(domain, dns_record_type.value))
