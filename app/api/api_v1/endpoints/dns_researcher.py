@@ -1,7 +1,7 @@
 """DNS researcher."""
 from fastapi import APIRouter, Query
 
-from app.core.models.response import  AResponse, MxResponse
+from app.core.models.response import AResponse, MxResponse
 from app.core.services.constants import MAX_URL_LENGTH, MIN_URL_LENGTH
 from app.core.services.researcher import get_a_response, get_mx_response
 
