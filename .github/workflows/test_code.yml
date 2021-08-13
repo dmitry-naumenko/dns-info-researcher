@@ -13,7 +13,7 @@ jobs:
           python-version: 3.9
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements/local.txt
       - name: mypy
         run: |
           mypy .
