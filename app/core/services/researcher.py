@@ -2,8 +2,8 @@
 
 from dns import resolver
 
-from dns_researcher.constants import DnsTypes
-from dns_researcher.responses import AResponse, MxResponse
+from ..models.response import AResponse, MxResponse
+from .constants import DnsTypes
 
 
 def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:

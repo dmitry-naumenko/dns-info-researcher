@@ -1,14 +1,14 @@
-"""Main."""
-from fastapi import FastAPI, Query
+"""DNS researcher."""
+from fastapi import APIRouter, Query
 
-from dns_researcher import get_a_response, get_mx_response
-from dns_researcher.constants import MAX_URL_LENGTH, MIN_URL_LENGTH
-from dns_researcher.responses import AResponse, MxResponse
+from app.core.models.response import  AResponse, MxResponse
+from app.core.services.constants import MAX_URL_LENGTH, MIN_URL_LENGTH
+from app.core.services.researcher import get_a_response, get_mx_response
 
-app = FastAPI(title="dns-info-researcher", description="Получить dns записи")
+router = APIRouter()
 
 
-@app.get("/v1/get_mx_info/", response_model=list[MxResponse], tags=["MX"])
+@router.get("/get_mx_info", response_model=list[MxResponse], tags=["MX"])
 def get_mx_info(
     domain_name: str = Query(
         ...,
@@ -22,7 +22,7 @@ def get_mx_info(
     return get_mx_response(domain_name)
 
 
-@app.get("/v1/get_a_info/", response_model=list[AResponse])
+@router.get("/get_a_info", response_model=list[AResponse])
 def get_a_info(
     domain_name: str = Query(
         ...,
