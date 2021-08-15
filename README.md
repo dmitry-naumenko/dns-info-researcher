@@ -23,6 +23,10 @@ docker-compose -f docker-compose-local.yml up -d --build
 compose/production/fastapi/Dockerfile
 kubernetes.yaml
 
+or
+
+docker-compose -f docker-compose-production.yml up -d --build
+
 ## Docs
 
 http://127.0.0.1:8000/docs

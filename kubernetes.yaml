@@ -9,8 +9,8 @@ spec:
     app: kf-api
   ports:
     - protocol: "TCP"
-      port: 8080
-      targetPort: 8080
+      port: 8000
+      targetPort: 8000
   type: LoadBalancer
 
 ---
@@ -36,7 +36,7 @@ spec:
         - name: kf-api
           image: dns_app
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
           imagePullPolicy: IfNotPresent
           resources:
             # You must specify requests for CPU to autoscale
