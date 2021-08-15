@@ -8,7 +8,7 @@ from app.core.services.researcher import get_a_response, get_mx_response
 router = APIRouter()
 
 
-@router.get("/get_mx_info", response_model=list[MxResponse], tags=["MX"])
+@router.get("/mx_records", response_model=list[MxResponse], tags=["MX"])
 def get_mx_info(
     domain_name: str = Query(
         ...,
@@ -22,7 +22,7 @@ def get_mx_info(
     return get_mx_response(domain_name)
 
 
-@router.get("/get_a_info", response_model=list[AResponse])
+@router.get("/a_records", response_model=list[AResponse])
 def get_a_info(
     domain_name: str = Query(
         ...,
