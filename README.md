@@ -20,7 +20,8 @@ docker-compose -f docker-compose-local.yml up -d --build
 
 #### Production
 
-docker-compose -f docker-compose-production.yml up -d --build
+compose/production/fastapi/Dockerfile
+kubernetes.yaml
 
 ## Docs
 

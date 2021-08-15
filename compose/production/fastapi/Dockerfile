@@ -5,5 +5,7 @@ ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements .
 RUN pip install -r production.txt
-ARG APP_HOME=/app
-WORKDIR ${APP_HOME}
+
+COPY ./app /app
+EXPOSE 8080
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
