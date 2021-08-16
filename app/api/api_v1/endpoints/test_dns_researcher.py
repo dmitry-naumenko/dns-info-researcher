@@ -4,13 +4,24 @@ from fastapi import status
 from app.core.config import API_V1_STR
 
 
-def test_get_mx_info_valid(client, mocker):
+@pytest.mark.parametrize(
+    "api_method_name, api_function_name",
+    [
+        ("mx_records", "get_mx_response"),
+        ("a_records", "get_a_response"),
+        ("aaaa_records", "get_aaaa_response"),
+    ],
+)
+def test_get_records_with_valid_domain(
+    client, mocker, api_method_name, api_function_name
+):
     mocker.patch(
-        # "app.api.api_v1.endpoints.dns_researcher.get_mx_response",
-        "app.core.services.researcher.get_mx_response",
+        f"app.core.services.researcher.{api_function_name}",
         return_value=[],
     )
-    response = client.get(f"{API_V1_STR}/mx_records/?domain_name=google.com")
+    response = client.get(
+        f"{API_V1_STR}/{api_method_name}/?domain_name=valid_domain_length.com"
+    )
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == []
 

@@ -17,7 +17,6 @@ async def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> lis
         list: [description]
     """
     try:
-
         return list(await asyncresolver.resolve(domain, dns_record_type.value))
     except resolver.NoAnswer:
         return []
@@ -51,7 +50,6 @@ async def get_a_response(domain: str) -> list[AResponse]:
         list[AResponse]: result
     """
     answers: list = await get_answers_from_domain(domain, DnsTypes.A)
-
     return [AResponse(record=str(record)) for record in answers]
 
 
@@ -65,5 +63,4 @@ async def get_aaaa_response(domain: str) -> list[AAAAResponse]:
         list[AResponse]: result
     """
     answers: list = await get_answers_from_domain(domain, DnsTypes.AAAA)
-
     return [AAAAResponse(record=str(record)) for record in answers]
