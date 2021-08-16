@@ -16,8 +16,15 @@ class MxResponse(Response):
     priority: str
 
 
-class AResponse(Response):
+class SimpleRecord(BaseModel):
     """A response."""
 
-    host: str
-    priority: str
+    record: str
+
+
+class AResponse(SimpleRecord):
+    """A response."""
+
+
+class AAAAResponse(SimpleRecord):
+    """AAAA response."""

@@ -2,7 +2,7 @@
 
 from dns import asyncresolver, resolver
 
-from ..models.response import AResponse, MxResponse
+from ..models.response import AAAAResponse, AResponse, MxResponse
 from .constants import DnsTypes
 
 
@@ -51,7 +51,19 @@ async def get_a_response(domain: str) -> list[AResponse]:
         list[AResponse]: result
     """
     answers: list = await get_answers_from_domain(domain, DnsTypes.A)
-    return [
-        AResponse(host=str(rdata.exchange), priority=rdata.preference)
-        for rdata in answers
-    ]
+
+    return [AResponse(record=str(record)) for record in answers]
+
+
+async def get_aaaa_response(domain: str) -> list[AAAAResponse]:
+    """Get AAAA response.
+
+    Args:
+        domain (str): domain name
+
+    Returns:
+        list[AResponse]: result
+    """
+    answers: list = await get_answers_from_domain(domain, DnsTypes.AAAA)
+
+    return [AAAAResponse(record=str(record)) for record in answers]

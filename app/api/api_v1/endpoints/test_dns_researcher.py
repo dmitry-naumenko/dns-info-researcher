@@ -6,7 +6,8 @@ from app.core.config import API_V1_STR
 
 def test_get_mx_info_valid(client, mocker):
     mocker.patch(
-        "app.api.api_v1.endpoints.dns_researcher.get_mx_response",
+        # "app.api.api_v1.endpoints.dns_researcher.get_mx_response",
+        "app.core.services.researcher.get_mx_response",
         return_value=[],
     )
     response = client.get(f"{API_V1_STR}/mx_records/?domain_name=google.com")
