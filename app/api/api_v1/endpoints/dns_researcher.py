@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get("/mx_records", response_model=list[MxResponse], tags=["MX"])
-def get_mx_info(
+async def get_mx_info(
     domain_name: str = Query(
         ...,
         min_length=MIN_URL_LENGTH,
@@ -19,11 +19,11 @@ def get_mx_info(
         description="Very good thing",
     )
 ):
-    return get_mx_response(domain_name)
+    return await get_mx_response(domain_name)
 
 
 @router.get("/a_records", response_model=list[AResponse])
-def get_a_info(
+async def get_a_info(
     domain_name: str = Query(
         ...,
         min_length=MIN_URL_LENGTH,
@@ -32,4 +32,4 @@ def get_a_info(
         description="Any domain name",
     )
 ):
-    return get_a_response(domain_name)
+    return await get_a_response(domain_name)

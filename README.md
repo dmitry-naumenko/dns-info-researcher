@@ -43,3 +43,8 @@ pre-commit run --all-files
 pre-commit install
 
 .github/workflows/test_code.yml
+
+## TODO
+
+- [ ] Add different responses for exceptions (resolver.NoAnswer, resolver.NXDOMAIN)
+- [ ] Add other types of records

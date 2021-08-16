@@ -1,12 +1,12 @@
 """Researcher."""
 
-from dns import resolver
+from dns import asyncresolver, resolver
 
 from ..models.response import AResponse, MxResponse
 from .constants import DnsTypes
 
 
-def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:
+async def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:
     """Get answers from domain.
 
     Args:
@@ -17,12 +17,15 @@ def get_answers_from_domain(domain: str, dns_record_type: DnsTypes) -> list:
         list: [description]
     """
     try:
-        return list(resolver.query(domain, dns_record_type.value))
+
+        return list(await asyncresolver.resolve(domain, dns_record_type.value))
+    except resolver.NoAnswer:
+        return []
     except resolver.NXDOMAIN:
         return []
 
 
-def get_mx_response(domain: str) -> list[MxResponse]:
+async def get_mx_response(domain: str) -> list[MxResponse]:
     """Get mx response.
 
     Args:
@@ -31,14 +34,14 @@ def get_mx_response(domain: str) -> list[MxResponse]:
     Returns:
         list[MxResponse]: result
     """
-    answers: list = get_answers_from_domain(domain, DnsTypes.MX)
+    answers: list = await get_answers_from_domain(domain, DnsTypes.MX)
     return [
         MxResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers
     ]
 
 
-def get_a_response(domain: str) -> list[AResponse]:
+async def get_a_response(domain: str) -> list[AResponse]:
     """Get a response.
 
     Args:
@@ -47,7 +50,7 @@ def get_a_response(domain: str) -> list[AResponse]:
     Returns:
         list[AResponse]: result
     """
-    answers: list = get_answers_from_domain(domain, DnsTypes.A)
+    answers: list = await get_answers_from_domain(domain, DnsTypes.A)
     return [
         AResponse(host=str(rdata.exchange), priority=rdata.preference)
         for rdata in answers

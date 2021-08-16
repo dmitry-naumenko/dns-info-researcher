@@ -13,7 +13,8 @@ from .researcher import get_mx_response
         (),
     ],
 )
-def test_get_mx_response(mocker, arguments):  # noqa: D103
+@pytest.mark.asyncio
+async def test_get_mx_response(mocker, arguments):  # noqa: D103
     class TestClass:  # noqa: WPS431
         def __init__(self, exchange, preference):
             self.exchange = exchange
@@ -23,6 +24,6 @@ def test_get_mx_response(mocker, arguments):  # noqa: D103
         "app.core.services.researcher.get_answers_from_domain",
         return_value=[TestClass(argument[0], argument[1]) for argument in arguments],
     )
-    assert get_mx_response("test.ru") == [
+    assert await get_mx_response("test.ru") == [
         MxResponse(host=argument[0], priority=argument[1]) for argument in arguments
     ]
