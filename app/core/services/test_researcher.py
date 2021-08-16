@@ -37,9 +37,9 @@ async def test_get_mx_response(mocker, arguments):  # noqa: D103
         (get_aaaa_response, AAAAResponse, "2a00:1450:4010:c08::66"),
     ],
 )
-async def test_get_record_type_response(
+async def test_get_record_type_response(  # noqa: D103
     mocker, function, model, result_record
-):  # noqa: D103
+):
     mocker.patch(
         "app.core.services.researcher.get_answers_from_domain",
         return_value=[result_record],
