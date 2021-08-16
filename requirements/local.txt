@@ -1,6 +1,8 @@
 -r base.txt
 
 black==21.7b0
+coverage
+coverage-badge
 ipython
 mypy
 pre-commit
