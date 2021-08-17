@@ -1,8 +1,11 @@
 """Tests."""  # noqa: F401
 import pytest
+from dns import resolver
 
-from ..models.response import AAAAResponse, AResponse, MxResponse
-from .researcher import get_a_response, get_aaaa_response, get_mx_response
+from app.core.services import researcher
+from app.core.services.constants import DnsTypes
+
+from ....models.response import AAAAResponse, AResponse, MxResponse
 
 
 @pytest.mark.parametrize(
@@ -24,7 +27,7 @@ async def test_get_mx_response(mocker, arguments):  # noqa: D103
         "app.core.services.researcher.get_answers_from_domain",
         return_value=[TestClass(argument[0], argument[1]) for argument in arguments],
     )
-    assert await get_mx_response("test.ru") == [
+    assert await researcher.get_mx_response("test.ru") == [
         MxResponse(host=argument[0], priority=argument[1]) for argument in arguments
     ]
 
@@ -33,8 +36,8 @@ async def test_get_mx_response(mocker, arguments):  # noqa: D103
 @pytest.mark.parametrize(
     "function, model, result_record",
     [
-        (get_a_response, AResponse, "64.233.165.101"),
-        (get_aaaa_response, AAAAResponse, "2a00:1450:4010:c08::66"),
+        (researcher.get_a_response, AResponse, "64.233.165.101"),
+        (researcher.get_aaaa_response, AAAAResponse, "2a00:1450:4010:c08::66"),
     ],
 )
 async def test_get_record_type_response(  # noqa: D103
@@ -45,3 +48,17 @@ async def test_get_record_type_response(  # noqa: D103
         return_value=[result_record],
     )
     assert await function("test.ru") == [model(record=result_record)]
+
+
+@pytest.mark.asyncio
+async def test_get_answers_from_domain_exception_noanswer(mocker):
+    mocker.patch("dns.asyncresolver.resolve", side_effect=resolver.NoAnswer)
+    assert await researcher.get_answers_from_domain("google1.com", DnsTypes.A) == []
+
+
+@pytest.mark.asyncio
+async def test_get_answers_from_domain_exception_nxdomain(mocker):
+    mocker.patch("dns.asyncresolver.resolve", side_effect=resolver.NXDOMAIN)
+    assert (
+        await researcher.get_answers_from_domain("go123123ogle1.com", DnsTypes.A) == []
+    )

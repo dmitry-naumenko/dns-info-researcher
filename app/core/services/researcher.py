@@ -60,7 +60,7 @@ async def get_aaaa_response(domain: str) -> list[AAAAResponse]:
         domain (str): domain name
 
     Returns:
-        list[AResponse]: result
+        list[AAAAResponse]: result
     """
     answers: list = await get_answers_from_domain(domain, DnsTypes.AAAA)
     return [AAAAResponse(record=str(record)) for record in answers]
