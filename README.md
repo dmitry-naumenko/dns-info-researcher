@@ -54,4 +54,3 @@ pre-commit install
 - [ ] Add different responses for exceptions (resolver.NoAnswer, resolver.NXDOMAIN)
 - [ ] Add other types of records
 - [ ] Add integrational tests
-- [ ] Add unit tests for get_answers_from_domain
