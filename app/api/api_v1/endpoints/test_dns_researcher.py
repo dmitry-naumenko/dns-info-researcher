@@ -1,8 +1,19 @@
 """Tests."""
+from typing import Final, Tuple
+
 import pytest
 from fastapi import status
 
 from app.core.config import API_V1_STR
+
+TOO_BIG_DOMAIN_NAME: Final[str] = "{long_text}.ru".format(long_text="a" * 100)
+TOO_SMALL_DOMAIN_NAME: Final[str] = "y.ru"
+EMPTY_DOMAIN_NAME = ""
+INVALID_DOMAIN_NAMES: Tuple[str, str, str] = (
+    TOO_BIG_DOMAIN_NAME,
+    TOO_SMALL_DOMAIN_NAME,
+    EMPTY_DOMAIN_NAME,
+)
 
 
 @pytest.mark.parametrize(
@@ -28,11 +39,9 @@ def test_get_records_with_valid_domain(
     assert response.json() == []  # noqa: WPS520
 
 
-@pytest.mark.parametrize(
-    "domain_name",
-    ["y.ru", "{long_text}.ru".format(long_text="a" * 100), "", None],
-)
-def test_get_mx_info_invalid_domain_length(client, mocker, domain_name):
+@pytest.mark.parametrize("domain_name", INVALID_DOMAIN_NAMES)
+def test_get_mx_info_invalid_domain_length(client, domain_name):
     """Test get MX info invalid domain length."""
+    # TODO: add all methods checking, not only MX
     response = client.get(f"{API_V1_STR}/mx_records/?domain_name={domain_name}")
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
