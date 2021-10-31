@@ -1,3 +1,6 @@
+"""Constants."""
+
+
 from typing import Final
 
 MIN_URL_LENGTH: Final[int] = 5
