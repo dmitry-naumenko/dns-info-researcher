@@ -10,3 +10,5 @@ services:
       - 8000:8000
     volumes:
       - .:/app:z
+    env_file:
+      - .env
