@@ -4,6 +4,17 @@
 [![wblack](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Dependabot Status](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com)
 
+# DNS INFO RESEARCHER
+
+## Table of Contents
+
+- [Installation](#installation)
+  - [Without docker](#without-docker)
+  - [With docker](#with-docker)
+- [Usage](#usage)
+  - [URL](#url)
+  - [Docs](#docs)
+
 ## Installation
 
 Create .env file in project root and set environment variables for application (example: .env.example)
@@ -31,6 +42,8 @@ Production version:
 or use kubernetes.yaml
 
 ## Usage
+
+### URL
 
 Application will be available on localhost in your browser.
 
