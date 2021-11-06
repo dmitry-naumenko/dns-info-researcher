@@ -4,9 +4,6 @@
 [![wblack](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Dependabot Status](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com)
 
-image::
-:target: https://github.com/ambv/black
-
 ## Installation
 
 Create .env file in project root and set environment variables for application (example: .env.example)
