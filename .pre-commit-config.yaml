@@ -12,18 +12,28 @@ repos:
       - id: requirements-txt-fixer
   - repo: local
     hooks:
-      - id: ci
-        name: ci
-        entry: bash start_all_tests.sh
+      - id: format
+        name: format
+        entry: bash app/scripts/format.sh
         pass_filenames: false
         language: system
-  - repo: https://github.com/timothycrosley/isort
-    rev: 5.9.3
-    hooks:
-      - id: isort
-  - repo: https://github.com/psf/black
-    rev: 21.7b0
-    hooks:
-      - id: black
-        args: [--line-length=88]
-        language_version: python3.9
+      - id: lint
+        name: lint
+        entry: bash app/scripts/lint.sh
+        pass_filenames: false
+        language: system
+      - id: test
+        name: test
+        entry: bash app/scripts/test.sh
+        pass_filenames: false
+        language: system
+      - id: test_cov
+        name: test_cov
+        entry: bash app/scripts/test_cov.sh
+        pass_filenames: false
+        language: system
+      - id: create_coverage_badge
+        name: create_coverage_badge
+        entry: bash app/scripts/create_coverage_badge.sh
+        pass_filenames: false
+        language: system

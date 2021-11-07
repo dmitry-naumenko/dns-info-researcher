@@ -14,11 +14,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements/local.txt
-      - name: mypy
+      - name: lint
         run: |
-          mypy .
-      - name: wemake-python-styleguide
-        uses: wemake-services/wemake-python-styleguide@0.15.3
-      - name: pytest
+          "${GITHUB_WORKSPACE}/app/scripts/lint.sh"
+      - name: test
         run: |
-          pytest .
+          "${GITHUB_WORKSPACE}/app/scripts/test.sh"
+      - name: test_cov
+        run: |
+          "${GITHUB_WORKSPACE}/app/scripts/test_cov.sh"
