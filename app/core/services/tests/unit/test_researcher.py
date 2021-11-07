@@ -4,8 +4,7 @@ from dns import resolver
 
 from app.core.services import researcher
 from app.core.services.constants import DnsTypes
-
-from ....models.response import AAAAResponse, AResponse, MxResponse
+from app.models.schemas.responses import AAAAResponse, AResponse, MxResponse
 
 
 @pytest.mark.parametrize(

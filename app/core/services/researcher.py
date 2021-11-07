@@ -2,7 +2,8 @@
 
 from dns import asyncresolver, resolver
 
-from ..models.response import AAAAResponse, AResponse, MxResponse
+from app.models.schemas.responses import AAAAResponse, AResponse, MxResponse
+
 from .constants import DnsTypes
 
 

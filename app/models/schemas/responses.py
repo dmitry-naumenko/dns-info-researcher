@@ -12,9 +12,6 @@ class Response(BaseModel):
 class MxResponse(Response):
     """MX response."""
 
-    host: str
-    priority: str
-
 
 class SimpleRecord(BaseModel):
     """A response."""

@@ -1,8 +1,8 @@
 """DNS researcher."""
 from fastapi import APIRouter
 
-from app.core.models.response import MxResponse
 from app.core.services import researcher
+from app.models.schemas.responses import MxResponse
 
 from ...query_parameters import domain_name_parameter
 
