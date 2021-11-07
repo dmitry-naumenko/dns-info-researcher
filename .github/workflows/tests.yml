@@ -3,7 +3,8 @@ name: Tests
 on: [push, pull_request]
 
 env:
-  PROJECT_NAME: Random
+  TITLE: Random
+  APP_ENV: test
 
 jobs:
   test:
