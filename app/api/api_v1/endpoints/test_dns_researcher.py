@@ -31,7 +31,7 @@ def test_get_records_with_valid_domain(
 ):
     """Test get records with valid domain."""
     mocker.patch(
-        f"app.core.services.researcher.{api_function_name}",
+        f"app.services.researcher.{api_function_name}",
         return_value=[],
     )
     response = client.get(

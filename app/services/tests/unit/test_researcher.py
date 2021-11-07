@@ -2,9 +2,9 @@
 import pytest
 from dns import resolver
 
-from app.core.services import researcher
-from app.core.services.constants import DnsTypes
 from app.models.schemas.responses import AAAAResponse, AResponse, MxResponse
+from app.services import researcher
+from app.services.constants import DnsTypes
 
 
 @pytest.mark.parametrize(
@@ -23,7 +23,7 @@ async def test_get_mx_response(mocker, arguments):  # noqa: D103
             self.preference = preference
 
     mocker.patch(
-        "app.core.services.researcher.get_answers_from_domain",
+        "app.services.researcher.get_answers_from_domain",
         return_value=[TestClass(argument[0], argument[1]) for argument in arguments],
     )
     assert await researcher.get_mx_response("test.ru") == [
@@ -43,7 +43,7 @@ async def test_get_record_type_response(  # noqa: D103
     mocker, function, model, result_record
 ):
     mocker.patch(
-        "app.core.services.researcher.get_answers_from_domain",
+        "app.services.researcher.get_answers_from_domain",
         return_value=[result_record],
     )
     assert await function("test.ru") == [model(record=result_record)]
