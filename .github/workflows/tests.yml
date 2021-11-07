@@ -20,13 +20,13 @@ jobs:
           pip install -r requirements/local.txt
       - name: lint
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/app/scripts/lint.sh"
-          "${GITHUB_WORKSPACE}/app/scripts/lint.sh"
+          chmod +x "${GITHUB_WORKSPACE}/scripts/lint.sh"
+          "${GITHUB_WORKSPACE}/scripts/lint.sh"
       - name: test
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/app/scripts/test.sh"
-          "${GITHUB_WORKSPACE}/app/scripts/test.sh"
+          chmod +x "${GITHUB_WORKSPACE}/scripts/test.sh"
+          "${GITHUB_WORKSPACE}/scripts/test.sh"
       - name: test_cov
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/app/scripts/test_cov.sh"
-          "${GITHUB_WORKSPACE}/app/scripts/test_cov.sh"
+          chmod +x "${GITHUB_WORKSPACE}/scripts/test_cov.sh"
+          "${GITHUB_WORKSPACE}/scripts/test_cov.sh"

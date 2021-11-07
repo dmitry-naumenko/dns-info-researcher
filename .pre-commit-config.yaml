@@ -14,26 +14,26 @@ repos:
     hooks:
       - id: format
         name: format
-        entry: bash app/scripts/format.sh
+        entry: bash scripts/format.sh
         pass_filenames: false
         language: system
       - id: lint
         name: lint
-        entry: bash app/scripts/lint.sh
+        entry: bash scripts/lint.sh
         pass_filenames: false
         language: system
       - id: test
         name: test
-        entry: bash app/scripts/test.sh
+        entry: bash scripts/test.sh
         pass_filenames: false
         language: system
       - id: test_cov
         name: test_cov
-        entry: bash app/scripts/test_cov.sh
+        entry: bash scripts/test_cov.sh
         pass_filenames: false
         language: system
       - id: create_coverage_badge
         name: create_coverage_badge
-        entry: bash app/scripts/create_coverage_badge.sh
+        entry: bash scripts/create_coverage_badge.sh
         pass_filenames: false
         language: system
