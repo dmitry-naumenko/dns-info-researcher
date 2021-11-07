@@ -1,3 +1,5 @@
+set -e
+
 mypy .
 pytest .
 flake8
