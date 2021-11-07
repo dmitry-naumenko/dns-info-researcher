@@ -18,6 +18,8 @@
 ## Installation
 
 Create .env file in project root and set environment variables for application (example: .env.example)
+Activate env variables:
+`set -o allexport; source .env; set +o allexport`
 
 #### Without docker
 

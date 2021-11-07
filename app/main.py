@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 
 from .api.api_v1.api import router as api_router
-from .core.config import API_V1_STR, PROJECT_NAME
+from .core.config import settings
 
-app = FastAPI(title=PROJECT_NAME, description="Get DNS records")
-app.include_router(api_router, prefix=API_V1_STR)
+app = FastAPI(title=settings.PROJECT_NAME, description="Get DNS records")
+app.include_router(api_router, prefix=settings.API_V1_STR)
