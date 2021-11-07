@@ -4,7 +4,9 @@ from typing import Final, Tuple
 import pytest
 from fastapi import status
 
-from ....core.config import settings
+from ....core.config import get_app_settings
+
+settings = get_app_settings()
 
 TOO_BIG_DOMAIN_NAME: Final[str] = "{long_text}.ru".format(long_text="a" * 100)
 TOO_SMALL_DOMAIN_NAME: Final[str] = "y.ru"
@@ -33,7 +35,7 @@ def test_get_records_with_valid_domain(
         return_value=[],
     )
     response = client.get(
-        f"{settings.API_V1_STR}/{api_method_name}/?domain_name=valid_domain_length.com"
+        f"{settings.api_v1_str}/{api_method_name}/?domain_name=valid_domain_length.com"
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == []  # noqa: WPS520
@@ -44,6 +46,6 @@ def test_get_mx_info_invalid_domain_length(client, domain_name):
     """Test get MX info invalid domain length."""
     # TODO: add all methods checking, not only MX
     response = client.get(
-        f"{settings.API_V1_STR}/mx_records/?domain_name={domain_name}"
+        f"{settings.api_v1_str}/mx_records/?domain_name={domain_name}"
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
