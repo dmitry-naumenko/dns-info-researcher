@@ -2,6 +2,9 @@ name: Tests
 
 on: [push, pull_request]
 
+env:
+  PROJECT_NAME: Random
+
 jobs:
   test:
     runs-on: ubuntu-latest
