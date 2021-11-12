@@ -1,4 +1,4 @@
 dnspython==2.1.0
 fastapi==0.70.0
-python-dotenv==0.19.1
+python-dotenv==0.19.2
 uvicorn==0.15.0
