@@ -1,12 +1,10 @@
-# kubernetes-fastapi LoadBalancer Service
-# Enables the pods in a deployment to be accessible from outside the cluster
 apiVersion: v1
 kind: Service
 metadata:
-  name: kf-api-svc
+  name: dns-api-svc
 spec:
   selector:
-    app: kf-api
+    app: dns-api
   ports:
     - protocol: "TCP"
       port: 8000
@@ -14,32 +12,28 @@ spec:
   type: LoadBalancer
 
 ---
-# kf-api Deployment
-# Defines the deployment of the app running in a pod on any worker node
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kf-api
+  name: dns-api
   labels:
-    app: kf-api
+    app: dns-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kf-api
+      app: dns-api
   template:
     metadata:
       labels:
-        app: kf-api
+        app: dns-api
     spec:
       containers:
-        - name: kf-api
-          image: dns_app
+        - name: dns-api
+          image: dnau/dns-info-researcher:1.0.0
           ports:
             - containerPort: 8000
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
-            # You must specify requests for CPU to autoscale
-            # based on CPU utilization
             requests:
-              cpu: "258m"
+              cpu: "250m"
