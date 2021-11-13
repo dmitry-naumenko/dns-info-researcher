@@ -41,6 +41,10 @@ Production version:
 `docker-compose -f docker-compose-production.yml up -d --build`
 or use kubernetes.yaml
 
+#### Kubernetes
+
+use kubernetes.yaml and autoscale.yaml
+
 ## Usage
 
 ### URL
