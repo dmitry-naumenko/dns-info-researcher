@@ -43,7 +43,7 @@ or use kubernetes.yaml
 
 #### Kubernetes
 
-use kubernetes.yaml and autoscale.yaml
+Use kubernetes.yaml and autoscale.yaml
 
 ## Usage
 
