@@ -52,5 +52,6 @@ jobs:
             docker run -d \
               --name frw_backend \
               --restart always \
+              --network host \
               -e TITLE=\"$TITLE\" \
               $IMAGE_NAME"
