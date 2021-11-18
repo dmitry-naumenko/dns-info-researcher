@@ -21,7 +21,7 @@ jobs:
 
       - name: Build image and publish to registry
         run: |
-          docker build -t $IMAGE_NAME:latest .
+          docker build -t $IMAGE_NAME:latest . -f ./compose/production/fastapi/Dockerfile
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
           docker push $IMAGE_NAME:latest
   deploy:
