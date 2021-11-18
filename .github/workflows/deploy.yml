@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Deploy service with traefik over ssh
+      - name: Deploy service over ssh
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -50,6 +50,5 @@ jobs:
             (docker rm -f frw_backend || true) && \
             docker run -d \
               --name frw_backend \
-              --network web \
               --restart always \
               $IMAGE_NAME"
