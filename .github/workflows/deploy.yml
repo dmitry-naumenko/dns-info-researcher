@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  IMAGE_NAME: dnau/dns-info-researcher
+  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+  build:
+    name: Build Container
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build image and publish to registry
+        run: |
+          docker build -t $IMAGE_NAME:latest .
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+          docker push $IMAGE_NAME:latest
+  deploy:
+    name: Deploy
+
+    runs-on: ubuntu-18.04
+
+    needs: build
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Deploy service with traefik over ssh
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+          eval $(ssh-agent -s)
+          echo "add ssh key"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SSH_USER@$SSH_HOST "
+            docker pull $IMAGE_NAME && \
+            (docker rm -f frw_backend || true) && \
+            docker run -d \
+              --name frw_backend \
+              --network web \
+              --restart always \
+              $IMAGE_NAME"
