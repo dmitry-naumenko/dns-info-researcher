@@ -17,7 +17,7 @@
 
 ## Installation
 
-Create .env file in project root and set environment variables for application (example: .env.example)
+Create .env file in project root and set environment variables for application (example: .env.example).
 
 #### Without docker
 
