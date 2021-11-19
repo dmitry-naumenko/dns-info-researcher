@@ -9,6 +9,8 @@ env:
   IMAGE_NAME: dnau/dns-info-researcher
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  TITLE: ${{ secrets.TITLE }}
+  APP_ENV: prod
 
 jobs:
   test:
