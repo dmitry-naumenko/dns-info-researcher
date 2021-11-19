@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.4.0
 
       - name: Build image and publish to registry
         run: |
@@ -32,7 +32,7 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2.4.0
       - name: Deploy service over ssh
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
