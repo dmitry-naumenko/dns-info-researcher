@@ -6,6 +6,10 @@
 
 # DNS INFO RESEARCHER
 
+Demo:
+https://dns.madn.top/docs
+https://dns.madn.top/redoc
+
 ## Table of Contents
 
 - [Installation](#installation)
