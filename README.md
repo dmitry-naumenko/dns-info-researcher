@@ -1,5 +1,5 @@
 ![coverage](.github/assets/coverage.svg)
-![Tests](https://github.com/dmitry-naumenko/dns-info-researcher/workflows/Tests/badge.svg)
+![Tests](https://github.com/dmitry-naumenko/dns-info-researcher/workflows/Deploy/badge.svg)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 [![wblack](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Dependabot Status](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com)
