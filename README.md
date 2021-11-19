@@ -6,9 +6,12 @@
 
 # DNS INFO RESEARCHER
 
-Demo:
-https://dns.madn.top/docs
-https://dns.madn.top/redoc
+## Demo:
+
+- OpenAPI
+  https://dns.madn.top/docs
+- Redoc
+  https://dns.madn.top/redoc
 
 ## Table of Contents
 
