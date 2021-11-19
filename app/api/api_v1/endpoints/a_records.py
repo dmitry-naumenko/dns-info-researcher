@@ -13,7 +13,8 @@ router = APIRouter()
     "",
     response_model=list[AResponse],
     summary="Get A records",
-    description="An A record is a type of DNS record that points a domain to an IP address",
+    description="An A record is a type of DNS record "
+    "that points a domain to an IP address",
 )
 async def get_a_records(domain_name: str = domain_name_parameter):
     """Get A records."""

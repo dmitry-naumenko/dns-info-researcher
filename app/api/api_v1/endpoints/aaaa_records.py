@@ -13,7 +13,8 @@ router = APIRouter()
     "",
     response_model=list[AAAAResponse],
     summary="Get AAAA records",
-    description="AAAA records are DNS records that use an IPv6 address to connect a domain to a website",
+    description="AAAA records are DNS records that use an IPv6 "
+    "address to connect a domain to a website",
 )
 async def get_aaaa_records(domain_name: str = domain_name_parameter):
     """AAAA records."""
