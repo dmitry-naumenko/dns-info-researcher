@@ -11,11 +11,34 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - name: Setup Python
+        uses: actions/setup-python@v2.3.0
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          pip install -r requirements/local.txt
+      - name: lint
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/scripts/lint.sh"
+          "${GITHUB_WORKSPACE}/scripts/lint.sh"
+      - name: test
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/scripts/test.sh"
+          "${GITHUB_WORKSPACE}/scripts/test.sh"
+      - name: test_cov
+        run: |
+          chmod +x "${GITHUB_WORKSPACE}/scripts/test_cov.sh"
+          "${GITHUB_WORKSPACE}/scripts/test_cov.sh"
+
   build:
     name: Build Container
-
+    needs: test
     runs-on: ubuntu-18.04
-
     steps:
       - uses: actions/checkout@v2.4.0
 
@@ -26,11 +49,8 @@ jobs:
           docker push $IMAGE_NAME:latest
   deploy:
     name: Deploy
-
     runs-on: ubuntu-18.04
-
     needs: build
-
     steps:
       - uses: actions/checkout@v2.4.0
       - name: Deploy service over ssh
