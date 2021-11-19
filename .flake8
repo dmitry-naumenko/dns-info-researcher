@@ -5,6 +5,7 @@ per-file-ignores =
     test_dns_researcher.py:WPS520, D100, D103, WPS118
     test_researcher.py:WPS520, D100, D103, WPS118
     conftest.py:D100, D103
-    app/api/api_v1/endpoints*: DAR101, DAR201, WPS431
+    app/api/api_v1/endpoints*: DAR101, DAR201
     app/core/config.py: WPS431
     app/core/settings*: WPS431
+    /app/models/schemas/responses.py: WPS431
