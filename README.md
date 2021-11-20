@@ -111,7 +111,6 @@ pre-commit install
 
 - [ ] Add different responses for exceptions (resolver.NoAnswer, resolver.NXDOMAIN)
 - [ ] Add other types of records
-- [ ] Add integration tests
 
 ## Coverage
 
