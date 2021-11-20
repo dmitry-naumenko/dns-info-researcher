@@ -6,6 +6,8 @@
 
 # DNS INFO RESEARCHER
 
+Helper for getting DNS records. All methods are cached.
+
 ## Demo:
 
 - OpenAPI
