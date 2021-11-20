@@ -28,6 +28,8 @@ jobs:
         run: |
           chmod +x "${GITHUB_WORKSPACE}/scripts/lint.sh"
           "${GITHUB_WORKSPACE}/scripts/lint.sh"
+      - name: Install redis
+        run: sudo apt-get install -y redis-server
       - name: test
         run: |
           chmod +x "${GITHUB_WORKSPACE}/scripts/test.sh"
