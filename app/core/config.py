@@ -26,3 +26,6 @@ def get_app_settings() -> AppSettings:
     config = environments[app_env]
 
     return config()
+
+
+settings = get_app_settings()

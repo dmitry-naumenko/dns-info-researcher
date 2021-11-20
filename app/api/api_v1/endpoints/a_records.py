@@ -5,10 +5,9 @@ from fastapi_cache.decorator import cache
 from app.models.schemas.responses import AResponse
 from app.services import researcher
 
-from ....core.config import get_app_settings
+from ....core.config import settings
 from ...query_parameters import domain_name_parameter
 
-settings = get_app_settings()
 router = APIRouter()
 
 
