@@ -1,4 +1,6 @@
+aioredis==2.0.0
 dnspython==2.1.0
 fastapi==0.70.0
+fastapi-cache2==0.1.7
 python-dotenv==0.19.2
 uvicorn==0.15.0

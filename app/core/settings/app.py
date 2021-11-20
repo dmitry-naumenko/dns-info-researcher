@@ -26,6 +26,8 @@ class AppSettings(BaseAppSettings):
     logging_level: int = logging.INFO
     loggers: Tuple[str, str] = ("uvicorn.asgi", "uvicorn.access")
 
+    cache_time: int = 1
+
     @property
     def fastapi_kwargs(self) -> Dict[str, Any]:
         """Fastapi kwargs.

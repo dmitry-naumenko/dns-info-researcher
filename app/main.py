@@ -1,5 +1,8 @@
 """Main."""
+import aioredis
 from fastapi import FastAPI
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
 from starlette.middleware.cors import CORSMiddleware
 
 from .api.api_v1.endpoints.api import router as api_router
@@ -30,3 +33,12 @@ def get_application() -> FastAPI:
 
 
 app = get_application()
+
+
+@app.on_event("startup")
+async def startup():
+    """Setip statrup."""
+    redis = aioredis.from_url(
+        "redis://localhost", encoding="utf8", decode_responses=True
+    )
+    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
