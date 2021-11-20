@@ -4,4 +4,4 @@ set -e
 set -x
 
 coverage run --source='.' -m pytest
-coverage report --fail-under=100
+coverage report --show-missing --fail-under=100
