@@ -4,7 +4,7 @@ from typing import Final, Tuple
 import pytest
 from fastapi import status
 
-from ....core.config import get_app_settings
+from app.core.config import get_app_settings
 
 settings = get_app_settings()
 
