@@ -17,13 +17,6 @@ class AppSettings(BaseAppSettings):
     redoc_url: str = "/redoc"
     title: str
     version: str = "0.1.0"
-    contact = (
-        {
-            "name": "Dmitry Naumenko",
-            "url": "https://madn.top",
-            "email": "6pirule@gmail.com",
-        },
-    )
 
     api_prefix: str = "/api"
     api_v1_str = "/api/v1"
