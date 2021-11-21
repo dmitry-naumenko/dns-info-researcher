@@ -3,6 +3,7 @@
     "parse",
     "api",
     "caching",
-    "CI"
+    "CI",
+    "endpoints"
   ]
 }

@@ -10,7 +10,7 @@ settings = get_app_settings()
 
 TOO_BIG_DOMAIN_NAME: Final[str] = "{long_text}.ru".format(long_text="a" * 100)
 TOO_SMALL_DOMAIN_NAME: Final[str] = "y.ru"
-EMPTY_DOMAIN_NAME = ""
+EMPTY_DOMAIN_NAME: Final[str] = ""
 INVALID_DOMAIN_NAMES: Tuple[str, str, str] = (
     TOO_BIG_DOMAIN_NAME,
     TOO_SMALL_DOMAIN_NAME,
@@ -42,10 +42,8 @@ def test_get_records_with_valid_domain(
 
 
 @pytest.mark.parametrize("domain_name", INVALID_DOMAIN_NAMES)
-def test_get_mx_info_invalid_domain_length(client, domain_name):
+def test_get_mx_info_invalid_domain_length(app, client, domain_name):
     """Test get MX info invalid domain length."""
-    # TODO: add all methods checking, not only MX
-    response = client.get(
-        f"{settings.api_v1_str}/mx_records/?domain_name={domain_name}"
-    )
+    url = app.url_path_for("a_records:get-a-records")
+    response = client.get(f"{url}?domain_name={domain_name}")
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY

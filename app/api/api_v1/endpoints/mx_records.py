@@ -3,7 +3,7 @@ from fastapi import APIRouter
 
 from app.core.caching import cache
 from app.models.schemas.responses import MxResponse
-from app.services import researcher
+from app.services.researcher import get_mx_response
 
 from ....core.config import get_app_settings
 from ...query_parameters import domain_name_parameter
@@ -23,4 +23,4 @@ router = APIRouter()
 @cache(expire=settings.cache_time)
 async def get_mx_records(domain_name: str = domain_name_parameter):
     """Get MX records."""
-    return await researcher.get_mx_response(domain_name)
+    return await get_mx_response(domain_name)
