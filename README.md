@@ -33,7 +33,7 @@ Helper for getting DNS records. All methods are cached.
 
 Create .env file in project root and set environment variables for application (example: .env.example).
 
-#### Without docker
+### Without docker
 
 Install requirements:
 
@@ -46,7 +46,7 @@ Run the web application:
 
 `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
 
-#### With docker
+### With docker
 
 You must have docker and docker-compose tools installed to work with material in this section.
 
@@ -55,7 +55,7 @@ You must have docker and docker-compose tools installed to work with material in
 - Production version:
   `docker-compose -f docker-compose-production.yml up -d --build`
 
-#### Kubernetes
+### Kubernetes
 
 Use kubernetes.yaml and autoscale.yaml
 
