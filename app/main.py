@@ -5,6 +5,8 @@ from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from starlette.middleware.cors import CORSMiddleware
 
+from app.core.settings.base import AppEnvTypes
+
 from .api.api_v1.endpoints.api import router as api_router
 from .core.config import get_app_settings
 
@@ -36,8 +38,10 @@ app = get_application()
 
 
 @app.on_event("startup")
-async def startup():
-    """Setip statrup."""
+async def startup():  # pragma: no cover
+    """Set up statrup."""
+    if get_app_settings().app_env == AppEnvTypes.test:
+        return
     redis = aioredis.from_url(
         "redis://localhost", encoding="utf8", decode_responses=True
     )

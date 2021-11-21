@@ -1,5 +1,5 @@
 """Config."""
-from functools import lru_cache, wraps
+from functools import lru_cache
 from typing import Dict, Type
 
 from app.core.settings.app import AppSettings
