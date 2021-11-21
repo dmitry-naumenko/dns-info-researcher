@@ -37,22 +37,23 @@ Create .env file in project root and set environment variables for application (
 
 Install requirements:
 
-Local verision:
-`pip install -r requirements/local.txt`
-Production version:
-`pip install -r requirements/production.txt`
+- Local verision:
+  `pip install -r requirements/local.txt`
+- Production version:
+  `pip install -r requirements/production.txt`
 
-To run the web application:
+Run the web application:
+
 `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
 
 #### With docker
 
 You must have docker and docker-compose tools installed to work with material in this section.
 
-Local version:
-`docker-compose -f docker-compose-local.yml up -d --build`
-Production version:
-`docker-compose -f docker-compose-production.yml up -d --build`
+- Local version:
+  `docker-compose -f docker-compose-local.yml up -d --build`
+- Production version:
+  `docker-compose -f docker-compose-production.yml up -d --build`
 
 #### Kubernetes
 
