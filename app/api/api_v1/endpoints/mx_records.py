@@ -1,7 +1,7 @@
 """DNS researcher."""
 from fastapi import APIRouter
-from fastapi_cache.decorator import cache
 
+from app.core.config import cache
 from app.models.schemas.responses import MxResponse
 from app.services import researcher
 
@@ -18,6 +18,7 @@ router = APIRouter()
     response_model=list[MxResponse],
     summary="Get MX records",
     description="A DNS MX record directs email to a mail server. ",
+    name="mx_records:get-mx-records",
 )
 @cache(expire=settings.cache_time)
 async def get_mx_records(domain_name: str = domain_name_parameter):

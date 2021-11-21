@@ -1,7 +1,7 @@
 """DNS researcher."""
 from fastapi import APIRouter
-from fastapi_cache.decorator import cache
 
+from app.core.config import cache
 from app.models.schemas.responses import AResponse
 from app.services import researcher
 
@@ -18,6 +18,7 @@ router = APIRouter()
     summary="Get A records",
     description="An A record is a type of DNS record "
     "that points a domain to an IP address",
+    name="a_records:get-a-records",
 )
 @cache(expire=settings.cache_time)
 async def get_a_records(domain_name: str = domain_name_parameter):
