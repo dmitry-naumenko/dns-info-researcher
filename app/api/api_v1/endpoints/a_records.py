@@ -1,7 +1,7 @@
 """DNS researcher."""
 from fastapi import APIRouter
 
-from app.core.config import cache
+from app.core.caching import cache
 from app.models.schemas.responses import AResponse
 from app.services import researcher
 
