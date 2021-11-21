@@ -20,9 +20,14 @@ Helper for getting DNS records. All methods are cached.
 - [Installation](#installation)
   - [Without docker](#without-docker)
   - [With docker](#with-docker)
+  - [Kubernetes](#kubernetes)
 - [Usage](#usage)
   - [URL](#url)
   - [Docs](#docs)
+- [Project structure](#project-structure)
+- [pre-commit](#pre-commit)
+- [TODO](#todo)
+- [CI](#ci)
 
 ## Installation
 
@@ -44,11 +49,10 @@ To run the web application:
 
 You must have docker and docker-compose tools installed to work with material in this section.
 
-Local verision:
+Local version:
 `docker-compose -f docker-compose-local.yml up -d --build`
 Production version:
 `docker-compose -f docker-compose-production.yml up -d --build`
-or use kubernetes.yaml
 
 #### Kubernetes
 
@@ -58,7 +62,7 @@ Use kubernetes.yaml and autoscale.yaml
 
 ### URL
 
-Application will be available on localhost in your browser.
+The application will be available on localhost in your browser.
 
 ### Docs
 
@@ -68,14 +72,6 @@ http://127.0.0.1:8000/docs
 
 http://127.0.0.1:8000/redoc
 
-## Run tests
-
-`bash start_all_tests.sh`
-
-## Business logic docs
-
-https://gist.github.com/akshaybabloo/2a1df455e7643926739e934e910cbf2e
-
 ## Project structure
 
 Files related to application are in the app or tests directories. Application parts are:
@@ -83,19 +79,13 @@ Files related to application are in the app or tests directories. Application pa
 ```
 app
 ├── api              - web related stuff.
-│   ├── dependencies - dependencies for routes definition.
-│   ├── errors       - definition of error handlers.
-│   └── routes       - web routes.
-├── core             - application configuration, startup events, logging.
-├── db               - db related stuff.
-│   ├── migrations   - manually written alembic migrations.
-│   └── repositories - all crud stuff.
+│   └── endpoints    - web routes.
+├── core             - application configuration, startup events, logging, caching.
 ├── models           - pydantic models for this application.
-│   ├── domain       - main models that are used almost everywhere.
 │   └── schemas      - schemas for using in web routes.
-├── resources        - strings that are used in web responses.
-├── services         - logic that is not just crud related.
+├── services         - business logic.
 └── main.py          - FastAPI application creation and configuration.
+tests                - tests
 ```
 
 ## pre-commit
@@ -112,6 +102,6 @@ pre-commit install
 - [ ] Add different responses for exceptions (resolver.NoAnswer, resolver.NXDOMAIN)
 - [ ] Add other types of records
 
-## Coverage
+## CI
 
-coverage run --source='.' -m pytest
+Look at directories: scripts, .github.

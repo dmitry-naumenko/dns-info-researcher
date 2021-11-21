@@ -4,6 +4,7 @@
     "api",
     "caching",
     "CI",
-    "endpoints"
+    "endpoints",
+    "readme"
   ]
 }
