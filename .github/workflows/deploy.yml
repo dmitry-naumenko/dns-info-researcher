@@ -16,7 +16,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.3.0
       - name: Setup Python
         uses: actions/setup-python@v2.3.2
         with:
@@ -42,7 +42,7 @@ jobs:
     needs: test
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.3.0
 
       - name: Build image and publish to registry
         run: |
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-18.04
     needs: build
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.3.0
       - name: Deploy service over ssh
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
